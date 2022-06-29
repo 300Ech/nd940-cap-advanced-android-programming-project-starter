@@ -3,8 +3,13 @@ package com.example.android.politicalpreparedness.network.jsonadapter
 import com.example.android.politicalpreparedness.network.models.Division
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.ToJson
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ElectionAdapter {
+
+    private val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
     @FromJson
     fun divisionFromJson (ocdDivisionId: String): Division {
         val countryDelimiter = "country:"
@@ -19,5 +24,16 @@ class ElectionAdapter {
     @ToJson
     fun divisionToJson (division: Division): String {
         return division.id
+    }
+
+    // ---------------------------------------------------------------------------------------------
+    @FromJson
+    fun dateFromJson (dateString: String): Date? {
+        return dateFormat.parse(dateString)
+    }
+
+    @ToJson
+    fun dateToJson (date: Date): String {
+        return dateFormat.format(date)
     }
 }

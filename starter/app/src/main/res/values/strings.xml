@@ -20,5 +20,12 @@
     <string name="twitter_icon">Twitter icon</string>
     <string name="upcoming_elections_recycler_view_title">Upcoming Elections</string>
     <string name="saved_elections_recycler_view_title">Saved Elections</string>
+    <string name="follow_election">Follow Election</string>
+    <string name="unfollow_election">Unfollow Election</string>
+    <string name="ballot_information">Ballot Information</string>
+    <string name="voting_locations">Voting Locations</string>
+    <string name="election_information">Election Information</string>
+    <string name="error_loading_data">Error loading data</string>
+    <string name="go_back">Go back</string>
 
 </resources>

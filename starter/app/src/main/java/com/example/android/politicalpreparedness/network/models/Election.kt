@@ -11,3 +11,10 @@ data class Election(
         @ColumnInfo(name = "electionDay")val electionDay: Date,
         @Embedded(prefix = "division_") @Json(name="ocdDivisionId") val division: Division
 )
+
+fun Election.toSavedElectionObject() = SavedElection(
+        id = id,
+        name = name,
+        electionDay = electionDay,
+        division = division
+)

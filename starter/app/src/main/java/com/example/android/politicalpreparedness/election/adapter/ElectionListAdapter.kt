@@ -107,7 +107,7 @@ class ElectionDiffCallback: androidx.recyclerview.widget.DiffUtil.ItemCallback<D
 
 // Create ElectionListener
 class ElectionListener(val clickListener: (election: Election) -> Unit) {
-    fun onElectionClick(election: Election) = clickListener(election)
+    fun onClick(election: Election) = clickListener(election)
 }
 
 sealed class DataItem {

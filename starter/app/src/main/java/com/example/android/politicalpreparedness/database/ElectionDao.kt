@@ -24,6 +24,9 @@ interface ElectionDao {
     @Query("SELECT * FROM election_table WHERE id = :id")
     fun getElectionById(id: Int): LiveData<Election>
 
+    @Query("SELECT * FROM election_table WHERE id = :id")
+    suspend fun getElectionByIdSync(id: Int): Election?
+
     // Add delete query
     @Query("DELETE FROM election_table WHERE id = :id")
     fun deleteElectionById(id: Int)

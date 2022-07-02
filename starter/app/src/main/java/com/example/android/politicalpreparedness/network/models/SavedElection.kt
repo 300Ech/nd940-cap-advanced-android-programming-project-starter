@@ -12,7 +12,7 @@ data class SavedElection(
         @Embedded(prefix = "division_") @Json(name="ocdDivisionId") val division: Division
 )
 
-fun SavedElection.toElectionOject() : Election {
+fun SavedElection.toElectionObject() : Election {
     return Election(
             id = id,
             name = name,

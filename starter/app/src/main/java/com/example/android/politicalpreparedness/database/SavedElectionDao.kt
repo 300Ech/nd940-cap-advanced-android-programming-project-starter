@@ -24,6 +24,9 @@ interface SavedElectionDao {
     @Query("SELECT * FROM saved_election_table WHERE id = :id")
     fun getSavedElectionById(id: Int): LiveData<SavedElection>
 
+    @Query("SELECT * FROM saved_election_table WHERE id = :id")
+    suspend fun getSavedElectionByIdSync(id: Int): SavedElection?
+
     // Add delete query
     @Query("DELETE FROM saved_election_table WHERE id = :id")
     fun deleteSavedElectionById(id: Int)

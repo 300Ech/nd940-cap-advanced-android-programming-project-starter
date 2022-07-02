@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="@dimen/common_padding"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
+
+    <!--Circled representative picture-->
+    <ImageView
+        android:id="@+id/representative_picture"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="TODO"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_profile" />
+
+    <!--Title of representative-->
+    <TextView
+        android:id="@+id/representative_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="TODO"
+        android:textColor="@color/gray50"
+        android:layout_marginStart="@dimen/default_padding"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/representative_picture"
+        app:layout_constraintTop_toTopOf="@id/representative_picture"
+        tools:text="President of the united states" />
+
+    <!--Name of representative-->
+    <TextView
+        android:id="@+id/representative_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="TODO"
+        android:textColor="@color/gray50"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/representative_title"
+        app:layout_constraintTop_toBottomOf="@id/representative_title"
+        tools:text="Mike Pence" />
+
+    <!--Party of representative-->
+    <TextView
+        android:id="@+id/representative_party"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="TODO"
+        android:textColor="@color/gray50"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/representative_name"
+        app:layout_constraintTop_toBottomOf="@id/representative_name"
+        tools:text="Republican" />
+
+    <include
+        android:id="@+id/social_band"
+        layout="@layout/social_media_band"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/representative_picture"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

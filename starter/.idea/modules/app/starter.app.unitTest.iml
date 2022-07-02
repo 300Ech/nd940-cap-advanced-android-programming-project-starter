@@ -109,6 +109,7 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9e8146218231b8b2f8977a051b1d4d05/jetified-okio-1.17.2.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2845d95a2fbd1971f348bdb62232777e/jetified-disklrucache-4.11.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c2b74b2d0b96bb6c0d60e9c030303c8b/jetified-annotations-4.11.0.jar</arg>
+                <arg>$MODULE_DIR$/../../../app/build/intermediates/javac/debug/classes</arg>
                 <arg>$MODULE_DIR$/../../../app/build/tmp/kotlin-classes/debug</arg>
                 <arg>$MODULE_DIR$/../../../app/build/tmp/kapt3/classes/debug</arg>
                 <arg>$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-32/android.jar</arg>

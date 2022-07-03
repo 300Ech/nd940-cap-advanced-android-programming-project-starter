@@ -27,5 +27,8 @@
     <string name="election_information">Election Information</string>
     <string name="error_loading_data">Error loading data</string>
     <string name="go_back">Go back</string>
+    <string name="location_required_error">Access to location is required to use this function.</string>
+    <string name="representative_party">Representative\'s party</string>
+    <string name="representative_title">Representative title</string>
 
 </resources>

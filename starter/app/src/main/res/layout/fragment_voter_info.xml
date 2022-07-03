@@ -19,11 +19,11 @@
         <!-- Add title to toolbar -->
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/election_name"
+            viewVisibility="@{viewModel.isDataAvailable}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
             android:padding="@dimen/default_padding"
-            viewVisibility="@{viewModel.isDataAvailable}"
             android:singleLine="true"
             app:layout_constraintTop_toTopOf="parent"
             app:title="@{viewModel.voterInfo.electionName}"
@@ -32,10 +32,10 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/errorLayout"
+            viewVisibility="@{viewModel.showError}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:visibility="gone"
-            viewVisibility="@{viewModel.showError}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,32 +56,32 @@
 
             <Button
                 android:id="@+id/errorBackButton"
-                app:layout_constraintTop_toBottomOf="@id/errorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@android:drawable/ic_menu_revert"
+                android:text="@string/go_back"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:text="@string/go_back"
-                android:drawableStart="@android:drawable/ic_menu_revert"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                app:layout_constraintTop_toBottomOf="@id/errorText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ProgressBar
             android:id="@+id/progressBar"
             viewVisibility="@{viewModel.isLoading}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/content"
+            viewVisibility="@{viewModel.isDataAvailable}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            viewVisibility="@{viewModel.isDataAvailable}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

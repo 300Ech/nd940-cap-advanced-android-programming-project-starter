@@ -19,8 +19,6 @@ class RepresentativeViewModel(application: Application): ViewModel() {
     val address: LiveData<Address>
         get() = _address
 
-    val selectedStateIndex = MutableLiveData<Int>()
-
     private val _selectedState = MutableLiveData<String>()
     val selectedState: LiveData<String>
         get() = _selectedState
@@ -28,7 +26,7 @@ class RepresentativeViewModel(application: Application): ViewModel() {
     val representatives = representativesRepository.representatives
 
     init {
-        _address.value = Address("", "","","New York","")
+        _address.value = Address("", "","","Alabama","")
     }
 
     fun loadData() {
@@ -51,21 +49,11 @@ class RepresentativeViewModel(application: Application): ViewModel() {
         _selectedState.value = selectedItem
     }
 
-
-    /**
-     *  The following code will prove helpful in constructing a representative from the API. This code combines the two nodes of the RepresentativeResponse into a single official :
-
-    val (offices, officials) = getRepresentativesDeferred.await()
-    _representatives.value = offices.flatMap { office -> office.getRepresentatives(officials) }
-
-    Note: getRepresentatives in the above code represents the method used to fetch data from the API
-    Note: _representatives in the above code represents the established mutable live data housing representatives
-
-     */
-
-    //TODO: Create function get address from geo location
-
-    //TODO: Create function to get address from individual fields
+    fun loadData(address: Address) {
+        _selectedState.value = address.state
+        _address.value = address
+        loadData()
+    }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

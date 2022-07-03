@@ -5,6 +5,7 @@
 
     <!-- Add node to connect Election ViewModel -->
     <data>
+
         <variable
             name="viewModel"
             type="com.example.android.politicalpreparedness.election.ElectionsViewModel" />

@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="representative"
             type="com.example.android.politicalpreparedness.representative.model.Representative" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginBottom="@dimen/common_padding"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/common_padding">
 
         <!--Circled representative picture-->
         <ImageView
@@ -21,23 +22,23 @@
             android:layout_height="60dp"
             android:contentDescription="@{representative.representativePictureContentDescriptionText()}"
             android:scaleType="centerCrop"
-            app:profileImage="@{representative.official.photoUrl}"
+            android:src="@drawable/ic_profile"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_profile" />
+            app:profileImage="@{representative.official.photoUrl}" />
 
         <!--Title of representative-->
         <TextView
             android:id="@+id/representativeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="TODO"
-            android:textColor="@color/gray50"
             android:layout_marginStart="@dimen/default_padding"
+            android:contentDescription="@string/representative_title"
+            android:text="@{representative.office.name}"
+            android:textColor="@color/gray50"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:text="@{representative.office.name}"
             app:layout_constraintStart_toEndOf="@id/representativePicture"
             app:layout_constraintTop_toTopOf="@id/representativePicture"
             tools:text="President of the united states" />
@@ -47,8 +48,8 @@
             android:id="@+id/representativeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@{`Representative` + representative.official.name}"
             android:text="@{representative.official.name}"
-            android:contentDescription="TODO"
             android:textColor="@color/gray50"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@id/representativeTitle"
@@ -60,9 +61,9 @@
             android:id="@+id/representativeParty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="TODO"
-            android:textColor="@color/gray50"
+            android:contentDescription="@string/representative_party"
             android:text="@{representative.official.party}"
+            android:textColor="@color/gray50"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@id/representativeName"
             app:layout_constraintTop_toBottomOf="@id/representativeName"

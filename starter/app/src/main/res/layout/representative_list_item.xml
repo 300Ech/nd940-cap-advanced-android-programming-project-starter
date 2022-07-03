@@ -1,67 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginBottom="@dimen/common_padding"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!--Circled representative picture-->
-    <ImageView
-        android:id="@+id/representative_picture"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:contentDescription="TODO"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_profile" />
+    <data>
+        <variable
+            name="representative"
+            type="com.example.android.politicalpreparedness.representative.model.Representative" />
+    </data>
 
-    <!--Title of representative-->
-    <TextView
-        android:id="@+id/representative_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="TODO"
-        android:textColor="@color/gray50"
-        android:layout_marginStart="@dimen/default_padding"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/representative_picture"
-        app:layout_constraintTop_toTopOf="@id/representative_picture"
-        tools:text="President of the united states" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginBottom="@dimen/common_padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <!--Name of representative-->
-    <TextView
-        android:id="@+id/representative_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="TODO"
-        android:textColor="@color/gray50"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@id/representative_title"
-        app:layout_constraintTop_toBottomOf="@id/representative_title"
-        tools:text="Mike Pence" />
+        <!--Circled representative picture-->
+        <ImageView
+            android:id="@+id/representativePicture"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="@{representative.representativePictureContentDescriptionText()}"
+            android:scaleType="centerCrop"
+            app:profileImage="@{representative.official.photoUrl}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_profile" />
 
-    <!--Party of representative-->
-    <TextView
-        android:id="@+id/representative_party"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="TODO"
-        android:textColor="@color/gray50"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@id/representative_name"
-        app:layout_constraintTop_toBottomOf="@id/representative_name"
-        tools:text="Republican" />
+        <!--Title of representative-->
+        <TextView
+            android:id="@+id/representativeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="TODO"
+            android:textColor="@color/gray50"
+            android:layout_marginStart="@dimen/default_padding"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@{representative.office.name}"
+            app:layout_constraintStart_toEndOf="@id/representativePicture"
+            app:layout_constraintTop_toTopOf="@id/representativePicture"
+            tools:text="President of the united states" />
 
-    <include
-        android:id="@+id/social_band"
-        layout="@layout/social_media_band"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/representative_picture"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <!--Name of representative-->
+        <TextView
+            android:id="@+id/representativeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{representative.official.name}"
+            android:contentDescription="TODO"
+            android:textColor="@color/gray50"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/representativeTitle"
+            app:layout_constraintTop_toBottomOf="@id/representativeTitle"
+            tools:text="Mike Pence" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!--Party of representative-->
+        <TextView
+            android:id="@+id/representativeParty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="TODO"
+            android:textColor="@color/gray50"
+            android:text="@{representative.official.party}"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/representativeName"
+            app:layout_constraintTop_toBottomOf="@id/representativeName"
+            tools:text="Republican" />
+
+        <include
+            android:id="@+id/socialBand"
+            layout="@layout/social_media_band"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/representativePicture"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

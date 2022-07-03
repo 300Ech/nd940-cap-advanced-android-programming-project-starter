@@ -4,27 +4,55 @@ import android.content.Context
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
-import android.view.*
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
 import com.example.android.politicalpreparedness.network.models.Address
+import com.example.android.politicalpreparedness.representative.adapter.RepresentativeListAdapter
 import java.util.Locale
 
-class DetailFragment : Fragment() {
+class DetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private lateinit var binding: FragmentRepresentativeBinding
+    private lateinit var adapter: RepresentativeListAdapter
+
+    // Declare ViewModel
+    private val viewModel: RepresentativeViewModel by lazy {
+        val activity = requireNotNull(this.activity) {
+            "You can only access the RepresentativeViewModel after onViewCreated()"
+        }
+
+        ViewModelProvider(
+            this,
+            RepresentativeViewModel.Factory(activity.application)
+        )[RepresentativeViewModel::class.java]
+    }
 
     companion object {
         //TODO: Add Constant for Location request
     }
 
-    //TODO: Declare ViewModel
-
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = FragmentRepresentativeBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
+        binding.buttonSearch.setOnClickListener {
+            hideKeyboard()
+            viewModel.loadData()
+        }
+
+        binding.stateSpinner.onItemSelectedListener = this
 
         //TODO: Establish bindings
 
@@ -37,9 +65,24 @@ class DetailFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        adapter = RepresentativeListAdapter()
+        binding.recyclerView.adapter = adapter
+
+        setupObservers()
+    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         //TODO: Handle location permission result to get location on permission granted
+    }
+
+    private fun setupObservers() {
+        viewModel.representatives.observe(viewLifecycleOwner) { representatives ->
+            adapter.submitList(representatives)
+        }
     }
 
     private fun checkLocationPermissions(): Boolean {
@@ -76,4 +119,10 @@ class DetailFragment : Fragment() {
         imm.hideSoftInputFromWindow(view!!.windowToken, 0)
     }
 
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        //Toast.makeText(context, "State: ${p0?.selectedItem}", Toast.LENGTH_SHORT).show()
+        viewModel.selectState(p0?.selectedItem.toString())
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) { }
 }

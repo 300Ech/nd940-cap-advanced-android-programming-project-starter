@@ -17,7 +17,7 @@ import java.lang.IllegalArgumentException
 class VoterInfoViewModel(application: Application): ViewModel() {
 
     private val database = ElectionDatabase.getInstance(application)
-    private val voterInfoRepository = VoterInfoRepository(database)
+    private val voterInfoRepository = VoterInfoRepository()
     private val electionsRepository = ElectionsRepository(database)
 
     private var _electionId : Int = 0
@@ -44,15 +44,6 @@ class VoterInfoViewModel(application: Application): ViewModel() {
     private val _navigationUrl = MutableLiveData<String>()
     val navigationUrl: MutableLiveData<String>
         get() = _navigationUrl
-
-    //TODO: Add live data to hold voter info
-
-    //TODO: Add var and methods to populate voter info
-
-    //TODO: Add var and methods to support loading URLs
-
-    //TODO: Add var and methods to save and remove elections to local database
-    //TODO: cont'd -- Populate initial state of save button to reflect proper action based on election saved status
 
     fun loadData(electionId: Int, division: Division) {
         _electionId = electionId

@@ -18,13 +18,21 @@
         android:paddingStart="@dimen/default_padding"
         android:paddingTop="@dimen/default_padding"
         android:paddingEnd="@dimen/default_padding"
-        app:layoutDescription="@xml/fragment_representative_scene">
+        app:layoutDescription="@xml/fragment_representative_scene_land">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/formContainer"
+            android:layout_marginEnd="@dimen/common_padding"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
             android:layout_width="0dp"
             android:layout_height="wrap_content">
             <!-- Add visual styling and content -->
@@ -134,20 +142,20 @@
             style="@style/HeaderStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/common_padding"
             android:text="@string/my_representatives"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/formContainer" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline" />
 
         <!-- Add Representatives RecyclerView -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:clipToPadding="true"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/representative_title"
             app:layout_constraintTop_toBottomOf="@id/representative_title"
             motion:itemCount="10"
             motion:listitem="@layout/representative_list_item" />
